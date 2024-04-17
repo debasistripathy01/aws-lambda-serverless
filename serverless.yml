@@ -1,0 +1,18 @@
+service: lambda-api
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+functions:
+  app:
+    handler: server.js
+    events:
+      - http:
+          path: /
+          method: ANY
+          cors: true
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true
